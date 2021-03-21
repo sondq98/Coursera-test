@@ -14,7 +14,7 @@ function Validator(options) {
             // Biến kiểm tra tất cả input hợp lệ hay chưa.
             var flagValid = true;
 
-            // Lặp qua từng optionsRule và validate
+            // Validate các rule, nếu có ít nhất 1 rule không thỏa mãn, flagValid = false.
             options.rules.forEach((optionRule) => {
                 var inputElement = formElement.querySelector(optionRule.selector);
                 var isValid = validate(inputElement, optionRule);
@@ -34,23 +34,11 @@ function Validator(options) {
 
                     var formValues = Array.from(enableInputs).reduce(function (output, currentInput) {
                         switch (currentInput.type) {
-                            // case 'checkbox':
-                            //     if (!Array.isArray(output[currentInput.name])) {
-                            //         output[currentInput.name] = [];
-                            //     }
-
-                            //     if (!currentInput.matches(':checked')) {   
-                            //         return output
-                            //     }                     
-                            //     output[currentInput.name].push(currentInput.value)
-                            //     break;
-
                             case 'checkbox':
                                 if (!currentInput.matches(':checked')) {
                                     output[currentInput.name] = '';
                                     return output
                                 }
-
                                 if (!Array.isArray(output[currentInput.name])) {
                                     output[currentInput.name] = [];
                                 }
@@ -95,7 +83,7 @@ function Validator(options) {
                 selectorRules[optionRule.selector].push(optionRule.test);
             }
 
-            // Lấy ra element trong rule
+            // Lấy ra cac element trong rule
             var inputElements = formElement.querySelectorAll(optionRule.selector)
 
             // Thêm các listener cho element được chọn
@@ -116,8 +104,6 @@ function Validator(options) {
 
 
     }
-
-
 
     // Hàm thực hiện validate (Kiểm tra input hợp lệ hay chưa, nếu chưa thì trả ra mess)
     function validate(inputElement, optionRule) {
@@ -158,17 +144,9 @@ function Validator(options) {
 
     //  Hàm lấy ra đối tượng form-group 
     function getFormGroup(element, selector) {
-        while (element.parentElement) {
-            if (element.parentElement.matches(selector)) {
-                return element.parentElement;
-            }
-            element = element.parentElement;
-        }
+        return element.closest(selector);
     }
 }
-
-
-
 
 
 // Định nghĩa rules
