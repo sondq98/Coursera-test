@@ -43,7 +43,7 @@
         <span class="form-message"></span>
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="avatar" class="form-label">Ảnh đại diện</label>
         <input id="avatar" name="avatar" type="file"
           class="form-control">
@@ -58,9 +58,9 @@
           <option value="hpg">Hải Phòng</option>
         </select>
         <span class="form-message"></span>
-      </div>
+      </div> -->
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="gender" class="form-label">Giới tính</label>
         <div>
           <input type="radio" name="gender" class="form-control" value="male">Nam
@@ -72,7 +72,7 @@
           <input type="radio" name="gender" class="form-control" value="other">Khác
         </div>
         <span class="form-message"></span>
-      </div>
+      </div> -->
 
       <button class="form-submit">Đăng ký</button>
     </form>
@@ -87,17 +87,17 @@
       formGroupSelector: '.form-group',
       errorSelector: '.form-message',
       rules: [
-        // Validator.isRequired('#fullname'),
-        // Validator.isRequired('#email'),
-        // Validator.isEmail('#email'),
-        // Validator.minLength('#password', 6),
-        // Validator.isRequired('#password_confirmation'),
-        // Validator.isConfirmed('#password_confirmation', function () {
-        //   return document.querySelector('#form-1 #password').value;
-        // }, 'Mật khẩu nhập lại không chính xác'),
+        Validator.isRequired('#fullname'),
+        Validator.isRequired('#email'),
+        Validator.isEmail('#email'),
+        Validator.minLength('#password', 6),
+        Validator.isRequired('#password_confirmation'),
+        Validator.isConfirmed('#password_confirmation', function () {
+          return document.querySelector('#form-1 #password').value;
+        }, 'Mật khẩu nhập lại không chính xác'),
         // Validator.isRequired('#avatar'),
         // Validator.isRequired('#province'),
-        Validator.isRequired('input[name="gender"]'),
+        // Validator.isRequired('input[name="gender"]'),
       ],
       onSubmit: function (data) {
         //call API
